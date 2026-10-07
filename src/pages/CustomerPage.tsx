@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../store/store";
 import { getCustomers } from "../store/slices/customerSlice";
+import AddCustomerForm from "../components/customer/AddCustomerForm";
 
 function CustomerPage() {
 
@@ -18,6 +19,8 @@ function CustomerPage() {
   return (
     <div>
       <h1>Customer Management</h1>
+
+      <AddCustomerForm />
 
       <h2>Customers</h2>
 

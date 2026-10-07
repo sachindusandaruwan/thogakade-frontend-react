@@ -32,6 +32,19 @@ export const getCustomers = createAsyncThunk(
   }
 );
 
+//add a new customer
+export const addCustomer = createAsyncThunk(
+  "customer/addCustomer",
+  async (customer: Customer) => {
+    const response = await axios.post(
+      "http://localhost:8080/api/customers",
+      customer
+    );
+
+    return response.data;
+  }
+);
+
 const customerSlice = createSlice({
   name: "customer",
   initialState,
