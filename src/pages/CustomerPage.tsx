@@ -8,13 +8,9 @@ import {
   deleteCustomer,
 } from "../store/slices/customerSlice";
 import AddCustomerForm from "../components/customer/AddCustomerForm";
+import type { Customer } from "../types/customer";
 
-interface Customer {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-}
+
 
 function CustomerPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -213,7 +209,7 @@ function CustomerPage() {
             <button type="submit">
               Update Customer
             </button>
-
+        
             <button
               type="button"
               style={{ marginLeft: "8px" }}
