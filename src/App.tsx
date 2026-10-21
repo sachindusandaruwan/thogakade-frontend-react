@@ -1,25 +1,15 @@
-// import CustomerPage from "./pages/CustomerPage";
-
-// function App() {
-//   return <CustomerPage />;
-// }
-
-// export default App;
-
-
-
-
-
 
 import { useState } from "react";
+
+import DashboardPage from "./pages/DashBoardPage";
 import CustomerPage from "./pages/CustomerPage";
 import ItemPage from "./pages/ItemPage";
 import OrderPage from "./pages/OrderPage";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<
-    "customer" | "item" | "order"
-  >("customer");
+    "dashboard" | "customer" | "item" | "order"
+  >("dashboard");
 
   return (
     <div>
@@ -28,8 +18,16 @@ function App() {
           padding: "20px",
           display: "flex",
           gap: "10px",
+          backgroundColor: "#1e293b",
         }}
       >
+        <button
+          type="button"
+          onClick={() => setCurrentPage("dashboard")}
+        >
+          Dashboard
+        </button>
+
         <button
           type="button"
           onClick={() => setCurrentPage("customer")}
@@ -52,6 +50,7 @@ function App() {
         </button>
       </nav>
 
+      {currentPage === "dashboard" && <DashboardPage />}
       {currentPage === "customer" && <CustomerPage />}
       {currentPage === "item" && <ItemPage />}
       {currentPage === "order" && <OrderPage />}
