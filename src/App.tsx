@@ -1,15 +1,30 @@
 
 import { useState } from "react";
 
+import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashBoardPage";
 import CustomerPage from "./pages/CustomerPage";
 import ItemPage from "./pages/ItemPage";
 import OrderPage from "./pages/OrderPage";
 
+type Page = "dashboard" | "customer" | "item" | "order";
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<
-    "dashboard" | "customer" | "item" | "order"
-  >("dashboard");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState<Page>("dashboard");
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCurrentPage("dashboard");
+  };
+
+  if (!isLoggedIn) {
+    return (
+      <LoginPage
+        onLoginSuccess={() => setIsLoggedIn(true)}
+      />
+    );
+  }
 
   return (
     <div>
@@ -17,7 +32,9 @@ function App() {
         style={{
           padding: "20px",
           display: "flex",
+          flexWrap: "wrap",
           gap: "10px",
+          alignItems: "center",
           backgroundColor: "#1e293b",
         }}
       >
@@ -47,6 +64,22 @@ function App() {
           onClick={() => setCurrentPage("order")}
         >
           Order Management
+        </button>
+
+        <button
+          type="button"
+          onClick={handleLogout}
+          style={{
+            marginLeft: "auto",
+            backgroundColor: "#dc2626",
+            color: "white",
+            border: "none",
+            padding: "8px 14px",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          Logout
         </button>
       </nav>
 
